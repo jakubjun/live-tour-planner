@@ -1,0 +1,19 @@
+{
+  "name": "live-tour-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakubjun/live-tour-planner.git"
+  },
+  "author": "Jakub Jun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakubjun/live-tour-planner/issues"
+  },
+  "homepage": "https://github.com/jakubjun/live-tour-planner#readme"
+}
