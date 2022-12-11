@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+import MouseObserver from './component/MouseObserver'
+import {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { connect} from './store'
+import myIcon from './component/PointerIcon.ts'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
+  const color = useSelector(state => state.map.color)
+  const cursors = useSelector(state => state.map.cursors)
+  useEffect(() => {
+    dispatch(connect())
+  }, [])
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      {JSON.stringify(cursors)}
+      <span style={{color: `#${color}`}}>barva</span>
+      <MapContainer
+        style={{height: '100vh', width: '100vw'}}
+        center={[51.505, -0.09]}
+        zoom={13}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {Object.entries(cursors).map(([color, latlng]) => 
+          <Marker icon={myIcon} style={{color: 'red'}} key={color} position={[latlng.lat, latlng.lng]}>
+            <Popup>
+              
+              <span style={{color: `#${color}`}}>{color}</span>
+            </Popup>
+          </Marker>
+        )}
+        <MouseObserver/>
+      </MapContainer></>)
 }
 
 export default App

@@ -1,21 +1,42 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true
+  'env': {
+    'browser': true,
+    'es2021': true
   },
-  extends: [
+  'extends': [
+    'eslint:recommended',
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'plugin:@typescript-eslint/recommended'
   ],
-  overrides: [
+  'overrides': [
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
+  'parser': '@typescript-eslint/parser',
+  'parserOptions': {
+    'ecmaVersion': 'latest',
+    'sourceType': 'module'
   },
-  plugins: [
-    'react'
+  'plugins': [
+    'react',
+    '@typescript-eslint'
   ],
-  rules: {
+  'rules': {
+    'indent': [
+      'error',
+      2
+    ],
+    'linebreak-style': [
+      'error',
+      'unix'
+    ],
+    'quotes': [
+      'error',
+      'single'
+    ],
+    'semi': [
+      'error',
+      'never'
+    ],
+    'react/react-in-jsx-scope': 'off'
+
   }
 }
