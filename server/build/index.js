@@ -12,7 +12,6 @@ function getRandomColor() {
 }
 wss.on('connection', (connectedWs) => {
     connectedWs.color = getRandomColor();
-    console.log('setcolor');
     connectedWs.send(JSON.stringify({ type: 'setColor', payload: connectedWs.color }));
     connectedWs.on('message', (data) => {
         const { payload, type } = JSON.parse(data.toString());

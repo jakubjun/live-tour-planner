@@ -17,7 +17,6 @@ const mapSlice = createSlice({
   },
   reducers: {
     connect: (state) => {
-      console.log('connecting')
       return
     },
     setColor: (state, action) => {

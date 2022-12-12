@@ -18,8 +18,6 @@ const socketMiddleware:Middleware = store => {
       websocket.addEventListener('message', (event) => {
 
         const {type, payload} = JSON.parse(event.data)
-        console.log(type)
-        console.log(setColor.type)
 
         if (type === PayloadTypes.SET_COLOR) {
           store.dispatch(setColor(payload))
